@@ -2,4 +2,6 @@ activate
 cnn_dataset/
 cnn_dataset
 data_ann
+data/
+data
 data_ann/
