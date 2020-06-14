@@ -14,6 +14,8 @@ config = tf.ConfigProto( device_count = {'GPU': 1 , 'CPU': 56} )
 sess = tf.Session(config=config)
 keras.backend.set_session(sess)
 
+print('TF Test GPU Available: ', tf.test.is_gpu_available())
+
 print('TensorFlow Version: ')
 print(tf.__version__)
 

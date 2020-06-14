@@ -1,4 +1,5 @@
 activate
+activate_nogpu
 cnn_dataset/
 cnn_dataset
 data_ann

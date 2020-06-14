@@ -15,8 +15,8 @@ from keras.preprocessing.image import ImageDataGenerator
 
 
 # Dataset path
-test_path = 'data/dataset/test_set/'
-train_path = 'data/dataset/train_set/'
+test_path = 'data/CNN/dataset/test_set/'
+train_path = 'data/CNN/dataset/training_set/'
 
 # Initialize the CNN
 classifier = Sequential()
