@@ -2,6 +2,8 @@ activate
 activate_nogpu
 .*
 *.swp
+*.keras
+models/
 cnn_dataset/
 cnn_dataset
 data_ann
