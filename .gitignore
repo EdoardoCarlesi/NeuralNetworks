@@ -1,5 +1,7 @@
 activate
 activate_nogpu
+.*
+*.swp
 cnn_dataset/
 cnn_dataset
 data_ann
