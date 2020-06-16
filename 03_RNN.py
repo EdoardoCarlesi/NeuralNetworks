@@ -1,7 +1,9 @@
 '''
     RECURRENT NEURAL NETWORKS
 '''
-
+import tkinter
+import matplotlib
+matplotlib.use('TkAgg')
 import pickle as pkl
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -130,13 +132,18 @@ print('Done.')
     PART 3: Make predictions and visualize results
 '''
 
+print('Rescaling test input data...')
+
 # Get the real value (test set): test_set_scaled 
-data_test = pd.read_csv(path_data_train)
+data_test = pd.read_csv(path_data_test)
 test_set = data_test.iloc[:, 1:2].values
 
 # We need to concatenate all the datasets --> the test dataset depends on the 60 last train dataset points, and they need to be normalized in the same way
 data_total = pd.concat((data_train['Open'], data_test['Open']), axis = 0)
 inputs = data_total[len(data_total) - len(data_test) - n_steps:].values
+
+print('Test input data: ', len(test_set))
+print('New input data: ', len(inputs))
 
 # Get the predicted value
 inputs = inputs.reshape(-1, 1)
@@ -145,10 +152,35 @@ inputs = inputs.reshape(-1, 1)
 inputs = sc.transform(inputs)
 
 # Compare the results
+X_test = []
+n_test_all = len(inputs)
 
+# Only take data in January
+n_test = n_steps + 20   
 
+for i in range(n_steps, n_test):
+    X_test.append(inputs[i-n_steps:i, 0])
+
+X_test = np.array(X_test)
+X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
+
+print('Predict the model using the RNN regressor...')
+
+predicted_price = regressor.predict(X_test)
+
+# Invert the scaling to get real stock prices from the rescaled ones
+predicted_price = sc.inverse_transform(predicted_price)
+
+print(predicted_price)
+
+print('Done.')
+
+# Plot the results
+plt.plot(test_set)
+plt.plot(predicted_price)
 
 plt.show()
+
 
 
 
