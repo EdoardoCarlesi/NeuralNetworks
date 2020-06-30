@@ -8,7 +8,7 @@ import torch.utils.data
 from torch.autograd import Variable
 
 # Path and filenames
-path_dir = 'data/lm-ml/'
+path_dir = 'data/lm-25m/'
 path_movies = 'movies.dat'
 path_users = 'movies.dat'
 path_ratings = 'ratings.dat'
